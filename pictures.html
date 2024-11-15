@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Pictures</title>
+    <style>
+        :root {
+            --page-height: 6in;
+            --page-width: 4in;
+            --picture-height: 2.3in;
+            --picture-width: 1.7in;
+        }
+
+        @media print {
+            @page {
+                size: var(--page-width) var(--page-height);
+                margin: 0;
+            }
+
+        }
+        
+        body {
+            height: var(--page-height); 
+            width: var(--page-width);
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        body > div {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.15in;
+        }
+
+        img {
+            height: var(--picture-height);
+            width: var(--picture-width);
+            object-fit: cover;
+        }
+
+        p {
+            width: 100%;
+            text-align: center;
+        }
+        
+        html {
+            background: repeating-linear-gradient(
+                -42deg,
+                slategray,
+                slategray 10px,
+                lightslategray 10px,
+                lightslategray 20px
+            );
+        }
+    </style>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", (event) => {
+            let height = getComputedStyle(document.body).getPropertyValue('--page-height')
+            let width = getComputedStyle(document.body).getPropertyValue('--page-width')
+            let picHeight = getComputedStyle(document.body).getPropertyValue('--picture-height')
+            let picWidth = getComputedStyle(document.body).getPropertyValue('--picture-width')
+            
+            document.querySelector('p').innerText = `page size: ${height} x ${width}`
+        })
+    </script>
+</head>
+<body>
+    <div>
+        <img src="example.jpg" />
+        <img src="example.jpg" />
+        <img src="example.jpg" />
+        <img src="example.jpg" />
+    </div>
+    <p></p>
+</body>
+</html>
